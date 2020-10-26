@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&family=News+Cycle:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Cocktailer</title>
+</head>
+<body>
+    
+    <div class="container">
+
+        <div class="header">
+            <img src="img/logo.png" alt="logo" class="logo">
+            <div class="title">Search your cocktail</div>
+        </div>
+
+        <div class="searchbar">
+            <form class="search">
+                <input type="text" class="search__field" placeholder="Insert a cocktail's name" maxlength="25">
+                <button class="search__button button">Search</button>
+            </form>
+            <div class="search_field"></div>
+        </div>
+
+        <section class="inner_container">
+
+            <div class="box-drinks-searched">
+                <!--
+                <div class="loader" style="display: none;">
+                    <svg>
+                        <use xlink:href="img/svg/124-spinner2.svg#spinner"></use>
+                    </svg>
+                </div>
+                -->
+
+                <!--
+                <div class="drink-searched">
+                    <p class="drink-name">Gin And Tonic</p>
+                    <p class="drink-category">Ordinary Drink</p>
+                </div>
+                -->
+                
+            </div>
+            
+
+            <div class="box-drink-details">
+                
+                <div class="no-drink-searched">
+                    <i class="fa fa-hand-o-up no-drink-searched__icon"></i>
+                    <p class="no-drink-searched__text">Search the name of a cocktail or an ingredient</p>
+                </div>
+
+                <div class="no-drink-selected">
+                    <i class="fa fa-hand-o-left no-drink-selected__icon" aria-hidden="true"></i>
+                    <p class="no-drink-selected__text">Click a drink on the left for viewing its details</p>
+                </div>
+
+                <div class="drink-details">
+                    <!--
+                    <div class="row1">
+                        <div class="row1__column1">
+                            <p class="drink-details__title">Gin Fizz</p>
+                            <p class="drink-details__category">Ordinary Drink</p>
+                        </div>
+                        <div class="row1__column2">
+                            <img src="" alt="Missing image." class="drink-details__image">
+                        </div>
+                    </div>
+                    <div class="row2">
+                        <p class="row2__subtitle">List of ingredients:</p>
+                        <ul class="drink-details__list_ingredients">
+                            <li class="ingredient">
+                                <p class="ingredient__name">Gin</p>
+                                <p class="ingredient__measure">2 oz</p>
+                            </li>
+                            <li class="ingredient">
+                                <p class="ingredient__name">Lemon</p>
+                                <p class="ingredient__measure">Juice of 1/2</p>
+                            </li>
+                            <li class="ingredient">
+                                <p class="ingredient__name">Powdered Sugar</p>
+                                <p class="ingredient__measure">1 tsp</p>
+                            </li>
+                            <li class="ingredient">
+                                <p class="ingredient__name">Carbonated Water</p>
+                                <p class="ingredient__measure"></p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row3">
+                        <div class="drink-details__instructions">
+                            <p>Shake all ingredients with ice cubes, except soda water. Pour into glass. Top with soda water.</p>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+
+            <div class="box-favourite-drinks">
+                <div class="box-favourite-drinks__title">
+                    <p>YOUR FAVOURITE DRINKS</p>
+                    <svg class="box-favourite-drinks__title-icon">
+                        <use xlink:href="img/sprite.svg#icon-list2"></use>
+                    </svg>
+                </div>
+                <div class="box-favourite-drinks__list">
+                    <!--
+                    <div class="box-favourite-drink" id="">
+                        <p class="box-favourite-drink__name">GIN AND TONIC</p>
+                        <svg class="box-favourite-drink__close-icon">
+                            <use xlink:href="img/sprite.svg#icon-cancel-circle"></use>
+                        </svg>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="js/bundle.js"></script>
+</body>
+</html>

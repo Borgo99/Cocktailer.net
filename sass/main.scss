@@ -1,0 +1,609 @@
+/*
+font-family: 'Courgette', cursive;
+font-family: 'News Cycle', sans-serif; 400 700
+*/
+$font2: 'News Cycle', sans-serif;
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == small-phone {
+        @media only screen and (max-width: 31.25em) { @content };    //500px
+    }
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 43.75em) { @content };    //700px
+    }
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width: 53.2em) { @content };     //850px
+    }
+    @if $breakpoint == tab-land {
+        @media only screen and (max-width: 68.75em) { @content };    //1100px
+    }
+    @if $breakpoint == big-desktop {
+        @media only screen and (min-width: 100em) { @content };    //1600
+    }
+    @if $breakpoint == bigger-desktop {
+        @media only screen and (min-width: 125em) { @content };     //2000
+    }
+}
+
+$color-gray: #666;
+$color-white-light: #fdfcee;
+$color-black: #222;
+
+$container-height: 90vh;
+$container-width: 80vw;
+$header-height: 7rem;
+$searchbar-height: 6rem;
+
+
+:root {
+    --color-white: #eeecda;
+    --color-orange: #f08a5d;
+    --color-red: #b83b5e;
+    --color-purple: #6a2c70;
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    background-image: linear-gradient(to left, #41295a, var(--color-purple));
+
+    @include respond(big-desktop) {
+        font-size: 71%;
+    }
+    @include respond(bigger-desktop) {
+        font-size: 95%;
+    }
+    @include respond(tab-land) {
+        font-size: 55%;
+    }
+    @include respond(small-phone) {
+        font-size: 51%;
+    }
+}
+
+p {
+    font-family: 'News Cycle', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    box-sizing: border-box;
+    background-image: linear-gradient(to left, #41295a, var(--color-purple));
+    width: 100vw;
+    height: 100vh;    
+    @include respond(phone) {
+        height: auto;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.button {
+    text-transform: uppercase;
+    font-family: $font2;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--color-white);
+    background-image: linear-gradient(to bottom right, var(--color-red), var(--color-orange));
+    padding: .4rem 1rem;
+    border: solid 1px #666;
+    border-radius: 10px;
+    transition: all .2s;
+
+    &:hover, &:focus {
+        cursor: pointer;
+        background-image: linear-gradient(to top left, var(--color-red), var(--color-orange));
+        transform: scale(1.05);
+        outline: none;
+    }
+    &:active {
+        cursor: pointer;
+        background-image: linear-gradient(to top left, var(--color-red), var(--color-orange));
+        transform: scale(.95);
+    }
+}
+
+.container {
+    
+    background-color: var(--color-white);
+    height: $container-height;
+    width: $container-width;
+    @include respond(tab-port) {
+        height: 100vh;
+        width: 100vw;
+    }
+    @include respond(phone) {
+        height: auto;
+    }
+    box-shadow:-5px -10px 10px rgba(0,0,0, .5);
+
+    display: flex;
+    align-items: center; 
+    flex-direction: column;
+
+    .header {
+        width: 100%;
+        height: $header-height;
+        display: flex;
+        position: relative;
+        justify-content: center;
+        @include respond(phone) {
+            justify-content: flex-end;
+            position: fixed;  
+            z-index: 1000;  
+        }
+        align-items: center;
+        border-bottom: solid 1px $color-gray;
+        background-color: $color-white-light;
+
+        .logo {
+            position: absolute;
+            top: -1.3rem;
+            left: 3rem;
+            height: 10rem;
+            width: auto;
+            @include respond(phone) {
+                top: -3rem;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 13rem;
+            }
+        }
+
+        .title {
+            font-family: 'Courgette', cursive;
+            font-size: 3.6rem;
+            padding-left: 5rem;
+
+            @include respond(phone) {
+                display: none;
+            }
+        }
+    }
+
+    .searchbar {
+        height: $searchbar-height;
+        width: 100%;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        border-bottom: solid 1px $color-gray;
+        @include respond(phone) {
+            margin-top: $header-height;
+        }
+
+        .search {
+            display: flex;
+            align-items: center;
+            @include respond(small-phone) {
+                width: 100%;
+            }
+
+            &__button {
+                margin-left: -2rem;
+                font-size: 1.35rem;
+            }
+
+            &__field {
+                margin-left: 3rem;
+                padding: .1rem 0 .1rem 1.4rem;
+                width: 25rem;
+                border-radius: 15px;
+                border: solid 1px #666;
+                font-family: $font2;
+                font-size: 1.7rem;
+
+                transition: all .2s;
+
+                &:focus, &:active {
+                    outline: none;
+                    border-color: var(--color-red);
+                }
+            }
+        }
+    }
+
+    .inner_container {
+        width: 100%;
+        flex: 1;
+        display: flex;
+
+        .box-drinks-searched, .box-favourite-drinks {
+            flex-basis: 25%;
+            height: calc(90vh - #{$searchbar-height} - #{$header-height});
+            @include respond(tab-port) {
+                height: calc(100vh - #{$searchbar-height} - #{$header-height});
+            }
+            overflow-y: scroll;
+            &::-webkit-scrollbar {
+                width: 0;
+            }
+            transition: all .2s;
+        }
+        .box-drinks-searched {
+            &__text {
+                text-align: center;
+                padding: 4rem 0 0 0;
+                color: var(--color-purple);
+                width: 80%;
+                margin: 0 auto;
+                font-size: 1.6rem;
+                @include respond(phone) {
+                    font-size: 2rem;
+                }
+            }
+
+            .loader {
+                @keyframes rotate {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+                
+                fill: var(--color-purple);
+                height: 4.2rem;
+                width: 100%;
+                animation: rotate 1s infinite linear;
+                margin-top: 5rem;
+            }
+        }
+
+        .box-drink-details {
+            flex: 1;
+            border-left: solid 1px $color-gray;
+            border-right: solid 1px $color-gray;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            .no-drink-selected, .no-drink-searched {
+                width: 70%;
+                height: 80%;
+                text-align: center;
+                &__text {
+                    font-family: 'News Cycle', sans-serif;
+                    font-weight: 700;
+                    color: $color-gray;
+                    font-size: 2.8rem;
+                    transform: skew(-10deg, -1deg);
+                }
+                &__icon {
+                    font-size: 3.6rem;
+                    color: $color-gray;
+                }
+            }
+            .no-drink-selected {
+                display: none;
+            }
+
+            .drink-details {
+                display: none;
+                flex-direction: column;
+                height: 100%;
+                width: 100%;
+
+                .row1 {
+                    display: flex;
+                    width: 100%;
+                    min-height: 25%;
+                    height: 30%;
+                    max-height: 30%;
+                    position: relative;
+
+                    @include respond(small-phone) {
+                        height: auto;
+                        max-height: unset;
+                        min-height: unset;
+                    }
+
+                    &__column1, &__column2 {
+                        flex-basis: 50%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+                &__title {
+                    color: var(--color-purple);
+                    font-size: 2.6rem;
+                    text-transform: uppercase;
+                    text-align: center;
+                    padding: 0 .6rem;
+                }
+                &__category {
+                    color: var(--color-red);
+                    font-size: 2.2rem;
+                    text-transform: capitalize;
+                }
+                &__image {
+                    height: 110%;
+                    width: auto;
+                    max-width: 90%;
+                    @include respond(small-phone) {
+                        height: auto;
+                        max-width: 80%;
+                        max-height: 90%;
+                    }
+                    border-radius: 10px;
+                    box-shadow: 2px 4px 8px rgba(0,0,0,0.5);
+                    transform: translateY(25%);
+
+                    transition: all .3s;
+                    &:hover {
+                        transform: translateY(25%) scale(1.1);
+                    }
+                }
+                &__like {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    fill: var(--color-orange);
+                    height: 4rem;
+                    width: 4rem;
+
+                    transition: all .3s;
+                    &:hover {
+                        cursor: pointer;
+                        fill: var(--color-red);
+                        transform: scale(1.06);
+                    }
+                    &:active {
+                        transform: scale(.95);
+                        fill: #8b2e48;
+                    }
+                }
+
+                .row2, .row3 {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+
+                    @include respond(small-phone) {
+                        height: auto !important;
+                        max-height: unset !important;
+                        //in-height: unset !important;
+                    }
+                }
+                .row2 {
+                    height: 35%;
+                    max-height: 40%;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 1rem 2rem;
+                    @include respond(small-phone) {
+                        padding: 4rem 2rem;
+                    }
+                    background-color: rgba(228, 211, 118, 0.479);
+                    &__subtitle {
+                        color: var(--color-orange);
+                        font-size: 2.4rem;
+                        transform: skew(-10deg, -1deg) translateY(-2px);
+                        text-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+                    }
+                }
+                &__list_ingredients {
+                    width: 100%;
+                    list-style-type: disc;
+                    column-count: 2;
+                    column-gap: 5rem;
+                    @include respond(small-phone) {
+                        column-count: unset;
+                    }
+                }
+                .ingredient {
+                    margin-left: 1rem;
+                    display: flex;
+                    color: var(--color-orange);
+                    font-size: 1.7rem;
+
+                    &__name {
+                        padding-right: .5rem;
+                        font-weight: 700;
+                    }
+                    &__measure {
+
+                    }
+                }
+
+                .row3 {
+                    min-height: 25%;
+                    height: 30%;
+                    max-height: 30%;
+                    overflow-y: scroll;
+                    &::-webkit-scrollbar {
+                        width: 5px;
+                        color: black;
+                    }
+                    position: relative;
+                    @include respond(phone) {
+                        overflow-y: unset;
+                    }
+                }
+                &__instructions {
+                    color: var(--color-purple);
+                    font-size: 1.7rem;
+                    line-height: 1.5;
+                    padding: 2rem 3rem;
+                    text-align: justify;
+                    position: absolute;
+                    top: 0;
+                    @include respond(phone) {
+                        position: unset;
+                    }
+                }
+                &__isAlcoholic {
+                    color: $color-gray;
+                    font-size: 1.7rem;
+                    text-align: center;
+                    //padding: 1.5rem 2.5rem;
+                    padding-top: 1rem;
+                }
+
+            }
+
+        }
+
+        .box-drinks-searched .drink-searched{
+            border-bottom: solid 1px $color-gray;
+            text-align: center;
+            padding: 1rem 0;
+
+            .drink-name {
+                font-family: 'News Cycle', sans-serif;
+                font-weight: 700;
+                font-size: 1.8rem;
+                color: var(--color-purple);;
+                text-transform: uppercase;
+                padding-top: 1rem;
+                @include respond(phone) {
+                    font-size: 2rem;
+                }
+            }
+
+            .drink-category {
+                font-family: 'News Cycle', sans-serif;
+                font-size: 1.6rem;
+                text-transform: capitalize;
+                color: var(--color-red);
+                transform: skewX(5deg);
+                padding-bottom: 1rem;
+                @include respond(phone) {
+                    font-size: 1.7rem;
+                }
+            }
+
+            transition: all .3s;
+            &:hover {
+                cursor: pointer;
+                .drink-name {
+                    margin-bottom: .2rem;
+                }
+                transform: scaleY(1.1);
+                background-color: $color-white-light;
+                border-top: solid 1px $color-gray;
+            }
+        }
+
+        .box-favourite-drinks {
+
+            @include respond(phone) {
+                flex-basis: 0%;
+            }
+
+            &__title {
+                padding: 1rem 1rem 1rem .5rem;
+                border-bottom: solid 1px $color-gray;
+                background-color: $color-white-light;
+                position: relative;
+                @include respond(phone) {
+                    position: initial;
+                }
+
+                p {
+                    color: var(--color-red);
+                    font-weight: 700;
+                    font-size: 1.8rem;
+                    text-align: right;
+                    width: 100%;
+                    padding-right: 3.1rem;
+
+                    @include respond(phone) {
+                        padding-right: .5rem;
+                    }
+                    @include respond(small-phone) {
+                        font-size: 1.8rem;
+                        line-height: 1.3;
+                    }
+                }
+
+                &-icon {
+                    width: 2rem;
+                    height: 2rem;
+                    position: absolute;
+                    top: 50%;
+                    right: 1.2rem;
+                    transform: translateY(-50%);
+                    fill: var(--color-red);
+                    transition: all .5s;
+                    @include respond(phone) {
+                        top: calc(#{$header-height} + #{$searchbar-height}*0.5);
+                        right: 2.5rem;
+                        width: 3.2rem;
+                        height: 3.2rem;
+                    }
+                }
+            }
+
+            .box-favourite-drink {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                padding: 1rem 1.5rem;
+                border-bottom: solid 1px $color-gray;
+
+                &__name {
+                    flex: 1;
+                    text-align: left;
+                    color: var(--color-purple);
+                    font-size: 2.2rem;
+                    font-weight: 700;
+                    transform: skew(-7deg, -2deg);
+                    padding-left: .3rem;
+                    padding-right: 1rem;
+                    @include respond(small-phone) {
+                        font-size: 2rem;
+                        line-height: 1.3;
+                        padding-left: 0;
+                        width: 82%;
+                        hyphens: auto;
+                    }
+                }
+
+                &__close-icon {
+                    flex-basis: 10%;
+                    height: 3rem;
+                    width: 3rem;
+                    @include respond(small-phone) {
+                        flex-basis: 16%;
+                    }
+                    fill: var(--color-red);
+                    align-self: center;
+
+                    transition: all .2s;
+                    &:hover {
+                        fill: var(--color-purple);
+                        transform: skewX(-3deg);
+                    }
+                }
+
+                transition: all .4s;
+                &:hover {
+                    cursor: pointer;
+                    background-color: $color-white-light;
+                }
+            }
+        }
+
+    }
+}
+
+ 
+

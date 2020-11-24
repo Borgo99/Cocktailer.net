@@ -250,6 +250,16 @@ body {
             transition: all .2s;
         }
         .box-drinks-searched {
+            &__title {
+                color: var(--color-red);
+                font-weight: 700;
+                font-size: 2.5rem;
+                text-align: center;
+                line-height: 1.2;
+                transform: skewX(-10deg);
+                padding: 1rem; 
+                border-bottom: solid 1px $color-gray;
+            }
             &__text {
                 text-align: center;
                 padding: 4rem 0 0 0;
@@ -500,6 +510,10 @@ body {
                 transform: scaleY(1.1);
                 background-color: $color-white-light;
                 border-top: solid 1px $color-gray;
+            }
+
+            &:last-child {
+                margin-bottom: 50%;
             }
         }
 

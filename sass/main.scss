@@ -5,6 +5,9 @@ font-family: 'News Cycle', sans-serif; 400 700
 $font2: 'News Cycle', sans-serif;
 
 @mixin respond($breakpoint) {
+    @if $breakpoint == smaller-phone {
+        @media only screen and (max-width: 23.13em) { @content };    //370px
+    }
     @if $breakpoint == small-phone {
         @media only screen and (max-width: 31.25em) { @content };    //500px
     }
@@ -210,6 +213,14 @@ body {
             &__button {
                 margin-left: -2rem;
                 font-size: 1.35rem;
+                @include respond(tab-port) {
+                    font-size: 13px;
+                    margin-left: -4rem;
+                }
+                @include respond(smaller-phone) {
+                    margin-left: -2rem;
+                    font-size: 1.35rem;
+                }
             }
 
             &__field {
@@ -226,6 +237,16 @@ body {
                 &:focus, &:active {
                     outline: none;
                     border-color: var(--color-red);
+                }
+
+                @include respond(tab-port) {
+                    width: 30rem;
+                    font-size: 16px;
+                }
+                @include respond(smaller-phone) {
+                    width: 25rem;
+                    font-size: 1.7rem;
+                    margin-left: .5rem;
                 }
             }
         }

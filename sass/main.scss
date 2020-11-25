@@ -305,6 +305,11 @@ body {
             .no-drink-selected {
                 display: none;
             }
+            .no-drink-searched__btn {
+                font-size: 1.8rem;
+                margin-top: 10%;
+                padding: .3rem .5rem;
+            }
 
             .drink-details {
                 display: none;
@@ -442,10 +447,10 @@ body {
                     height: 30%;
                     max-height: 30%;
                     overflow-y: scroll;
-                    &::-webkit-scrollbar {
-                        width: 5px;
-                        color: black;
-                    }
+                    // &::-webkit-scrollbar {
+                    //     width: 5px;
+                    //     color: black;
+                    // }
                     position: relative;
                     @include respond(phone) {
                         overflow-y: unset;
